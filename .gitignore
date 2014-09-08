@@ -1,0 +1,4 @@
+.DS_Store
+*.box
+*.log
+packer_cache

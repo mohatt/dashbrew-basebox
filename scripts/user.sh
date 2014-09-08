@@ -6,60 +6,6 @@ export PHPBREW_ROOT=/opt/phpbrew
 /usr/bin/phpbrew init
 source $PHPBREW_ROOT/bashrc
 
-# default phpbrew configurations
-touch $PHPBREW_ROOT/config.yaml
-cat <<EOF > ${PHPBREW_ROOT}/config.yaml
-variants:
-    dev:
-        bcmath:
-        bz2:
-        calendar:
-        cli:
-        fpm:
-          - --enable-fpm
-          - --with-fpm-user=www-data
-          - --with-fpm-group=www-data
-        curl:
-        ctype:
-        xml:
-        dom:
-        filter:
-        ipc:
-        json:
-        mbregex:
-        mbstring:
-        hash:
-        mcrypt:
-        readline:
-        posix:
-        pcntl:
-        sockets:
-        exif:
-        gd:
-        phar:
-        pdo:
-        mysql:
-        pgsql:
-        sqlite:
-        ftp:
-        kerberos:
-        iconv:
-        intl:
-        gettext:
-        session:
-        zip:
-        zlib:
-        openssl:
-        soap:
-        tokenizer:
-        xmlrpc:
-        tidy:
-extensions:
-    dev:
-        xhprof: latest
-        xdebug: stable
-EOF
-
 # install phps
 /usr/bin/phpbrew install 5.3.29 +dev
 /usr/bin/phpbrew install 5.4.32 +dev
@@ -75,9 +21,6 @@ phpbrew use 5.5.16
 /usr/bin/phpbrew ext install +dev
 phpbrew use 5.6.0
 /usr/bin/phpbrew ext install +dev
-
-# delete downloaded archives
-rm /opt/phpbrew/build/*.bz2
 
 # install php tools
 phpbrew install-composer

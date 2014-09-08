@@ -1,0 +1,49 @@
+variants:
+    dev:
+        bcmath:
+        bz2:
+        calendar:
+        cli:
+        fpm:
+          - --enable-fpm
+          - --with-fpm-user=www-data
+          - --with-fpm-group=www-data
+        curl:
+        ctype:
+        xml:
+        dom:
+        filter:
+        ipc:
+        json:
+        mbregex:
+        mbstring:
+        hash:
+        mcrypt:
+        readline:
+        posix:
+        pcntl:
+        sockets:
+        exif:
+        gd:
+        phar:
+        pdo:
+        mysql:
+        pgsql:
+        sqlite:
+        ftp:
+        kerberos:
+        iconv:
+        intl:
+        gettext:
+        session:
+        zip:
+        zlib:
+        openssl:
+        soap:
+        tokenizer:
+        xmlrpc:
+        tidy:
+extensions:
+    dev:
+        xhprof: latest
+        xdebug: stable

@@ -69,6 +69,11 @@
     ],
     "provisioners": [
         {
+            "type": "file",
+            "source": "/config-files",
+            "destination": "/tmp"
+        },
+        {
             "type": "shell",
             "execute_command": "echo '{{user `ssh_password`}}' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
             "scripts": [

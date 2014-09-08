@@ -28,10 +28,13 @@ apt-get -y purge ppp pppconfig pppoeconf
 # delete oddities
 apt-get -y purge popularity-contest
 
-# Remove APT cache
+# remove APT cache
 apt-get -y autoremove
 apt-get -y clean
 apt-get -y autoclean
 
-# Remove APT files
+# remove APT files
 find /var/lib/apt -type f | xargs rm -f
+
+# delete downloaded php archives
+rm /opt/phpbrew/build/*.bz2

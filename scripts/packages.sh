@@ -46,14 +46,14 @@ mkdir /opt/phpbrew
 chown $PACKER_SSH_USERNAME /opt/phpbrew
 chgrp $PACKER_SSH_USERNAME /opt/phpbrew
 
+# default phpbrew configurations
+cp /tmp/config-files/phpbrew/config.yaml /opt/phpbrew/config.yaml
+chown $PACKER_SSH_USERNAME /opt/phpbrew/config.yaml
+chgrp $PACKER_SSH_USERNAME /opt/phpbrew/config.yaml
+
 # configure phpbrew paths
 # source /opt/phpbrew/bashrc
-touch /etc/profile.d/phpbrew.sh
-cat <<EOF > /etc/profile.d/phpbrew.sh
-export PHPBREW_HOME=/opt/phpbrew
-export PHPBREW_ROOT=/opt/phpbrew
-source /opt/phpbrew/bashrc
-EOF
+cp /tmp/config-files/etc/profile.d/phpbrew.sh /etc/profile.d/phpbrew.sh
 
 # force zsh to load scripts in /etc/profile and /etc/profile.d/*
 cat <<EOF > /etc/zsh/zprofile

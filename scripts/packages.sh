@@ -84,3 +84,6 @@ apt-get -y install vim
 
 # install httpie
 easy_install httpie
+
+# install supervisor
+easy_install supervisor

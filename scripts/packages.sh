@@ -87,3 +87,7 @@ easy_install httpie
 
 # install supervisor
 easy_install supervisor
+
+# copy supervisor init script
+cp /tmp/config-files/etc/init.d/supervisord.sh /etc/init.d/supervisord
+chmod +x /etc/init.d/supervisord

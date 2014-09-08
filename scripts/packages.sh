@@ -47,7 +47,7 @@ chown $PACKER_SSH_USERNAME /opt/phpbrew
 chgrp $PACKER_SSH_USERNAME /opt/phpbrew
 
 # default phpbrew configurations
-cp /tmp/config-files/phpbrew/config.yaml /opt/phpbrew/config.yaml
+cp /tmp/config-files/opt/phpbrew/config.yaml /opt/phpbrew/config.yaml
 chown $PACKER_SSH_USERNAME /opt/phpbrew/config.yaml
 chgrp $PACKER_SSH_USERNAME /opt/phpbrew/config.yaml
 
@@ -90,8 +90,10 @@ easy_install supervisor
 
 # copy supervisor config file
 cp /tmp/config-files/etc/supervisord.conf /etc/supervisord.conf
-chmod +x /etc/init.d/supervisord
 
 # copy supervisor init script
 cp /tmp/config-files/etc/init.d/supervisord.sh /etc/init.d/supervisord
 chmod +x /etc/init.d/supervisord
+
+# create log directory for supervisord programs
+mkdir /var/log/supervisord

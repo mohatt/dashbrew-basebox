@@ -8,6 +8,17 @@ debconf-set-selections <<< 'mysql-server mysql-server/root_password_again passwo
 apt-get -y install mysql-server
 apt-get -y install mysql-client libmysqlclient-dev libmysqld-dev
 
+# ensure apache is installed
+apt-get -y install apache2
+
+# configure apache and ssl
+a2ensite default-ssl
+make-ssl-cert generate-default-snakeoil --force-overwrite
+a2enmod rewrite proxy proxy_fcgi actions ssl
+a2enmod rewrite
+a2enmod proxy
+a2enmod proxy_fcgi
+
 # install php5 build deps
 apt-get -y build-dep php5
 
@@ -30,9 +41,6 @@ apt-get -y install libmcrypt-dev libmcrypt4
 # workaround for configure error: freetype.h not found
 ln -s /usr/include/freetype2 /usr/include/freetype2/freetype
 
-# ensure apache is installed
-apt-get -y install apache2
-
 # install zsh
 apt-get -y install zsh
 
@@ -50,6 +58,11 @@ chgrp $PACKER_SSH_USERNAME /opt/phpbrew
 cp /tmp/config-files/opt/phpbrew/config.yaml /opt/phpbrew/config.yaml
 chown $PACKER_SSH_USERNAME /opt/phpbrew/config.yaml
 chgrp $PACKER_SSH_USERNAME /opt/phpbrew/config.yaml
+
+# php-fpm control script
+cp /tmp/config-files/opt/phpbrew/fpm.sh /opt/phpbrew/php-fpm.sh
+chown $PACKER_SSH_USERNAME /opt/phpbrew/php-fpm.sh
+chgrp $PACKER_SSH_USERNAME /opt/phpbrew/php-fpm.sh
 
 # configure phpbrew paths
 # source /opt/phpbrew/bashrc
@@ -85,15 +98,15 @@ apt-get -y install vim
 # install httpie
 easy_install httpie
 
-# install supervisor
-easy_install supervisor
+# install monit
+apt-get -y install monit
 
-# copy supervisor config file
-cp /tmp/config-files/etc/supervisord.conf /etc/supervisord.conf
+# copy monit config file
+cp /tmp/config-files/etc/monit/monitrc /etc/monit/monitrc
 
-# copy supervisor init script
-cp /tmp/config-files/etc/init.d/supervisord.sh /etc/init.d/supervisord
-chmod +x /etc/init.d/supervisord
+# create supervisord programs directory
+mkdir /etc/monit/config.d
 
-# create log directory for supervisord programs
-mkdir /var/log/supervisord
+# disable startup of apache2 & mysql since we're managing them through monit
+update-rc.d -f apache2 remove
+update-rc.d -f mysql remove

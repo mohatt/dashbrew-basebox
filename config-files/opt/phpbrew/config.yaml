@@ -5,9 +5,6 @@ variants:
         calendar:
         cli:
         fpm:
-          - --enable-fpm
-          - --with-fpm-user=www-data
-          - --with-fpm-group=www-data
         curl:
         ctype:
         xml:

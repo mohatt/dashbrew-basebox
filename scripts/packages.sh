@@ -81,11 +81,11 @@ apt-get -y install git-core
 
 # install ruby
 apt-get -y install sqlite3
-apt-get -y ruby1.9.1 ruby1.9.1-dev
-env REALLY_GEM_UPDATE_SYSTEM=1 gem update --system
+apt-get -y install ruby1.9.1 ruby1.9.1-dev
+env REALLY_GEM_UPDATE_SYSTEM=1 /usr/bin/gem update --system
 
 # install mailcatcher
-gem install mailcatcher --no-ri --no-rdoc
+/usr/bin/gem install mailcatcher --no-ri --no-rdoc
 
 # mailcatcher config
 addgroup mailcatcher
@@ -95,10 +95,9 @@ chmod +x /etc/init.d/mailcatcher
 
 # install phpmyadmin
 curl -L -O http://garr.dl.sourceforge.net/project/phpmyadmin/phpMyAdmin/4.2.8/phpMyAdmin-4.2.8-english.tar.gz
-cp phpMyAdmin-4.2.8-english.tar.gz /opt
-tar -xzvf /opt/phpMyAdmin-4.2.8-english.tar.gz
+tar -xzvf phpMyAdmin-4.2.8-english.tar.gz
+mv phpMyAdmin-4.2.8-english /opt/pma
 rm phpMyAdmin-4.2.8-english.tar.gz
-mv /opt/phpMyAdmin-4.2.8-english /opt/pma
 chown -R $PACKER_SSH_USERNAME:www-data /opt/pma
 
 # copy PMA config file

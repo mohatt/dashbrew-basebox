@@ -67,7 +67,7 @@
     "post-processors": [
         {
             "type": "vagrant",
-            "compression_level": 7
+            "compression_level": 8
         }
     ],
     "provisioners": [

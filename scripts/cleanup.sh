@@ -20,7 +20,7 @@ dpkg --list | awk '{ print $2 }' | grep linux-source | xargs apt-get -y purge
 # apt-get -y purge cpp gcc g++
 
 # delete X11 libraries
-# apt-get -y purge libx11-data xauth libxmuu1 libxcb1 libx11-6 libxext6
+apt-get -y purge libx11-data xauth libxmuu1 libxcb1 libx11-6 libxext6
 
 # delete obsolete networking
 apt-get -y purge ppp pppconfig pppoeconf
@@ -36,5 +36,9 @@ apt-get -y autoclean
 # remove APT files
 find /var/lib/apt -type f | xargs rm -f
 
-# delete downloaded php archives
+# delete php & php extention archives downloaded by phpbrew
 rm /opt/phpbrew/build/*.bz2
+rm /opt/phpbrew/build/php-5.6.0/ext/*.tgz
+
+# clean /tmp dir
+rm -rf /tmp/*

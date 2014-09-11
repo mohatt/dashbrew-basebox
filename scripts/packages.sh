@@ -19,6 +19,10 @@ a2enmod rewrite
 a2enmod proxy
 a2enmod proxy_fcgi
 
+# changes owner of /var/www and /var/www/html
+chown $PACKER_SSH_USERNAME:$PACKER_SSH_USERNAME /var/www
+chown $PACKER_SSH_USERNAME:$PACKER_SSH_USERNAME /var/www/html
+
 # install php5 build deps
 apt-get -y build-dep php5
 
@@ -46,23 +50,21 @@ apt-get -y install zsh
 
 # install phpbrew
 curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew
-chmod +x phpbrew
 mv phpbrew /usr/bin/phpbrew
+chmod +x /usr/bin/phpbrew
 
 # create phpbrew directory and allow it to by managed by a non-root user
 mkdir /opt/phpbrew
-chown $PACKER_SSH_USERNAME /opt/phpbrew
-chgrp $PACKER_SSH_USERNAME /opt/phpbrew
+chown $PACKER_SSH_USERNAME:$PACKER_SSH_USERNAME /opt/phpbrew
 
 # default phpbrew configurations
 cp /tmp/config-files/opt/phpbrew/config.yaml /opt/phpbrew/config.yaml
-chown $PACKER_SSH_USERNAME /opt/phpbrew/config.yaml
-chgrp $PACKER_SSH_USERNAME /opt/phpbrew/config.yaml
+chown $PACKER_SSH_USERNAME:$PACKER_SSH_USERNAME /opt/phpbrew/config.yaml
 
 # php-fpm control script
-cp /tmp/config-files/opt/phpbrew/fpm.sh /opt/phpbrew/php-fpm.sh
-chown $PACKER_SSH_USERNAME /opt/phpbrew/php-fpm.sh
-chgrp $PACKER_SSH_USERNAME /opt/phpbrew/php-fpm.sh
+cp /tmp/config-files/opt/phpbrew/php-fpm.sh /opt/phpbrew/php-fpm.sh
+chown $PACKER_SSH_USERNAME:$PACKER_SSH_USERNAME /opt/phpbrew/php-fpm.sh
+chmod +x /opt/phpbrew/php-fpm.sh
 
 # configure phpbrew paths
 # source /opt/phpbrew/bashrc
@@ -78,16 +80,30 @@ EOF
 apt-get -y install git-core
 
 # install ruby
-apt-get -y install libyaml-dev sqlite3
-curl -L -O http://ftp.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz
-tar -xzvf ruby-2.1.2.tar.gz
-cd ruby-2.1.2
-./configure --disable-install-rdoc
-make
-make install
-cd ..
-rm -rf ruby-2.1.2.tar.gz
-rm -rf ruby-2.1.2
+apt-get -y install sqlite3
+apt-get -y ruby1.9.1 ruby1.9.1-dev
+env REALLY_GEM_UPDATE_SYSTEM=1 gem update --system
+
+# install mailcatcher
+gem install mailcatcher --no-ri --no-rdoc
+
+# mailcatcher config
+addgroup mailcatcher
+adduser --ingroup mailcatcher --disabled-password --gecos "" --no-create-home --shell "/bin/true" mailcatcher
+cp /tmp/config-files/etc/init.d/mailcatcher.sh /etc/init.d/mailcatcher
+chmod +x /etc/init.d/mailcatcher
+
+# install phpmyadmin
+curl -L -O http://garr.dl.sourceforge.net/project/phpmyadmin/phpMyAdmin/4.2.8/phpMyAdmin-4.2.8-english.tar.gz
+cp phpMyAdmin-4.2.8-english.tar.gz /opt
+tar -xzvf /opt/phpMyAdmin-4.2.8-english.tar.gz
+rm phpMyAdmin-4.2.8-english.tar.gz
+mv /opt/phpMyAdmin-4.2.8-english /opt/pma
+chown -R $PACKER_SSH_USERNAME:www-data /opt/pma
+
+# copy PMA config file
+cp /tmp/config-files/opt/pma/config.inc.php /opt/pma/config.inc.php
+chown $PACKER_SSH_USERNAME:www-data /opt/pma/config.inc.php
 
 # install nodejs
 apt-get -y install nodejs

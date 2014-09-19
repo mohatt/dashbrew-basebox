@@ -119,9 +119,9 @@ apt-get -y install monit
 # copy monit config file
 cp /tmp/config-files/etc/monit/monitrc /etc/monit/monitrc
 
-# create supervisord programs directory
-mkdir /etc/monit/config.d
-
 # disable startup of apache2 & mysql since we're managing them through monit
 update-rc.d -f apache2 remove
 update-rc.d -f mysql remove
+
+# install augeas
+apt-get -y install augeas-tools

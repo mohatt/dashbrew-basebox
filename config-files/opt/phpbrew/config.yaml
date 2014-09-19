@@ -5,6 +5,7 @@ variants:
         calendar:
         cli:
         fpm:
+        phpdbg:
         curl:
         ctype:
         xml:

@@ -9,8 +9,10 @@ source $PHPBREW_ROOT/bashrc
 # install php 5.6
 /usr/bin/phpbrew install 5.6.0 +dev
 
-# install php extensions
+# install php tools & extensions
 phpbrew switch 5.6.0
+phpbrew install-phpunit
+phpbrew install-composer
 /usr/bin/phpbrew ext install +dev
 
 # oh my zsh

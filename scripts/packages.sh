@@ -14,10 +14,7 @@ apt-get -y install apache2
 # configure apache and ssl
 a2ensite default-ssl
 make-ssl-cert generate-default-snakeoil --force-overwrite
-a2enmod rewrite proxy proxy_fcgi actions ssl
-a2enmod rewrite
-a2enmod proxy
-a2enmod proxy_fcgi
+a2enmod rewrite proxy proxy_fcgi proxy_http actions ssl mime
 
 # changes owner of /var/www and /var/www/html
 chown $PACKER_SSH_USERNAME:$PACKER_SSH_USERNAME /var/www
@@ -94,10 +91,10 @@ cp /tmp/config-files/etc/init.d/mailcatcher.sh /etc/init.d/mailcatcher
 chmod +x /etc/init.d/mailcatcher
 
 # install phpmyadmin
-curl -L -O http://garr.dl.sourceforge.net/project/phpmyadmin/phpMyAdmin/4.2.8/phpMyAdmin-4.2.8-english.tar.gz
-tar -xzvf phpMyAdmin-4.2.8-english.tar.gz
-mv phpMyAdmin-4.2.8-english /opt/pma
-rm phpMyAdmin-4.2.8-english.tar.gz
+curl -L -O http://garr.dl.sourceforge.net/project/phpmyadmin/phpMyAdmin/4.2.9/phpMyAdmin-4.2.9-english.tar.gz
+tar -xzvf phpMyAdmin-4.2.9-english.tar.gz
+mv phpMyAdmin-4.2.9-english /opt/pma
+rm phpMyAdmin-4.2.9-english.tar.gz
 chown -R $PACKER_SSH_USERNAME:www-data /opt/pma
 
 # copy PMA config file

@@ -26,6 +26,10 @@ variants:
         phar:
         pdo:
         mysql:
+            - --with-mysql=mysqlnd
+            - --with-mysqli=mysqlnd
+            - --with-pdo-mysql=mysqlnd
+            - --with-mysql-sock=/var/run/mysqld/mysqld.sock
         pgsql:
         sqlite:
         ftp:

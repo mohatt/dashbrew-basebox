@@ -113,8 +113,9 @@ easy_install httpie
 # install monit
 apt-get -y install monit
 
-# copy monit config file
-cp /tmp/config-files/etc/monit/monitrc /etc/monit/monitrc
+# copy monit init.d file
+cp /tmp/config-files/etc/init.d/monit /etc/init.d/monit
+chmod +x /etc/init.d/monit
 
 # disable startup of apache2 & mysql since we're managing them through monit
 update-rc.d -f apache2 remove

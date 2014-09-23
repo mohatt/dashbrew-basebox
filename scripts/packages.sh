@@ -87,7 +87,7 @@ env REALLY_GEM_UPDATE_SYSTEM=1 /usr/bin/gem update --system
 # mailcatcher config
 addgroup mailcatcher
 adduser --ingroup mailcatcher --disabled-password --gecos "" --no-create-home --shell "/bin/true" mailcatcher
-cp /tmp/config-files/etc/init.d/mailcatcher.sh /etc/init.d/mailcatcher
+cp /tmp/config-files/etc/init.d/mailcatcher /etc/init.d/mailcatcher
 chmod +x /etc/init.d/mailcatcher
 
 # install phpmyadmin

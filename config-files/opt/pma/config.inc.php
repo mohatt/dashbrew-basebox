@@ -7,7 +7,8 @@
 
 $cfg['blowfish_secret'] = 'rl8ocrl147d65078';  // use here a value of your choice
 
-$cfg['Servers'][0]['user']          = 'root';
-$cfg['Servers'][0]['password']      = 'root';
-$cfg['Servers'][0]['auth_type']     = 'config';
+$cfg['Servers'][1]['user']          = 'root';
+$cfg['Servers'][1]['password']      = 'root';
+$cfg['Servers'][1]['auth_type']     = 'config';
+
 ?>

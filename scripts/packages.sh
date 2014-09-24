@@ -12,13 +12,17 @@ apt-get -y install mysql-client libmysqlclient-dev libmysqld-dev
 apt-get -y install apache2
 
 # configure apache and ssl
+cp /tmp/config-files/etc/apache2/apache2.conf /etc/apache2/apache2.conf
+chown root:root /etc/apache2/apache2.conf
 a2ensite default-ssl
 make-ssl-cert generate-default-snakeoil --force-overwrite
 a2enmod rewrite proxy proxy_fcgi proxy_http actions ssl mime
 
-# changes owner of /var/www and /var/www/html
-chown $PACKER_SSH_USERNAME:$PACKER_SSH_USERNAME /var/www
-chown $PACKER_SSH_USERNAME:$PACKER_SSH_USERNAME /var/www/html
+# remove all files in /var/www
+rm -rf /var/www/*
+
+# make the directory that will contain configs for installed php-fpms
+mkdir /etc/apache2/php
 
 # install php5 build deps
 apt-get -y build-dep php5

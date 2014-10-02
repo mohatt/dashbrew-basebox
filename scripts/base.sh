@@ -3,6 +3,9 @@
 # ppa for apache 2.4.10
 add-apt-repository -y ppa:ondrej/apache2
 
+# ppa for latest php 5.5
+add-apt-repository -y ppa:ondrej/php5
+
 # ppa for mysql 5.5.39
 add-apt-repository -y ppa:ondrej/mysql-5.5
 

@@ -10,28 +10,38 @@ apt-get -y install mysql-client libmysqlclient-dev libmysqld-dev
 
 # ensure apache is installed
 apt-get -y install apache2
-
-# configure apache and ssl
+# copy apache2 config file
 cp /tmp/config-files/etc/apache2/apache2.conf /etc/apache2/apache2.conf
 chown root:root /etc/apache2/apache2.conf
-a2ensite default-ssl
+# configure default vhosts
+rm -rf /var/www/*
+rm -rf /etc/apache2/sites-enabled/*
+rm -rf /etc/apache2/sites-available/*
+cp /tmp/config-files/etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
+cp /tmp/config-files/etc/apache2/sites-available/000-default-ssl.conf /etc/apache2/sites-available/000-default-ssl.conf
+chown root:root /etc/apache2/sites-available/000-default.conf
+chown root:root /etc/apache2/sites-available/000-default-ssl.conf
+a2ensite 000-default 000-default-ssl
+# configure apache modules
 make-ssl-cert generate-default-snakeoil --force-overwrite
 a2enmod rewrite proxy proxy_fcgi proxy_http actions ssl mime
-
-# remove all files in /var/www
-rm -rf /var/www/*
-
-# make the directory that will contain configs for installed php-fpms
-mkdir /etc/apache2/php
 
 # install php5 build deps
 apt-get -y build-dep php5
 
 # install system php (we just want the cli sapi and the dev package)
-apt-get -y install php5-dev php5-cli php-pear php5-curl
+apt-get -y install php5-dev php5-cli php5-fpm php-pear php5-curl php5-xdebug php5-mysqlnd php5-sqlite
 # no need for these modules
-php5dismod pdo
 php5dismod opcache
+# copy default fpm pool config
+cp /tmp/config-files/etc/php5/fpm/pool.d/www.conf /etc/php5/fpm/pool.d/www.conf
+# make the directory that will contain configs for installed php-fpms
+mkdir /etc/apache2/php
+# copy php-fpms config file for system php
+cp /tmp/config-files/etc/apache2/php/php-system-fpm.conf /etc/apache2/php/php-system-fpm.conf
+# copy php5-fpm init.d file
+cp /tmp/config-files/etc/init.d/php5-fpm /etc/init.d/php5-fpm
+chmod +x /etc/init.d/php5-fpm
 
 # install dev packages
 apt-get -y install autoconf automake curl libxslt1-dev re2c libxml2 libxml2-dev bison libbz2-dev libreadline-dev
@@ -95,10 +105,10 @@ cp /tmp/config-files/etc/init.d/mailcatcher /etc/init.d/mailcatcher
 chmod +x /etc/init.d/mailcatcher
 
 # install phpmyadmin
-curl -L -O http://garr.dl.sourceforge.net/project/phpmyadmin/phpMyAdmin/4.2.9/phpMyAdmin-4.2.9-english.tar.gz
-tar -xzvf phpMyAdmin-4.2.9-english.tar.gz
-mv phpMyAdmin-4.2.9-english /opt/pma
-rm phpMyAdmin-4.2.9-english.tar.gz
+curl -L -O http://garr.dl.sourceforge.net/project/phpmyadmin/phpMyAdmin/4.2.9.1/phpMyAdmin-4.2.9.1-english.tar.gz
+tar -xzvf phpMyAdmin-4.2.9.1-english.tar.gz
+mv phpMyAdmin-4.2.9.1-english /opt/pma
+rm phpMyAdmin-4.2.9.1-english.tar.gz
 chown -R $PACKER_SSH_USERNAME:www-data /opt/pma
 
 # copy PMA config file
@@ -123,6 +133,7 @@ chmod +x /etc/init.d/monit
 
 # disable startup of apache2 & mysql since we're managing them through monit
 update-rc.d -f apache2 remove
+update-rc.d -f php5-fpm remove
 update-rc.d -f mysql remove
 
 # install augeas

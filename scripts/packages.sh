@@ -46,7 +46,7 @@ chmod +x /etc/init.d/php5-fpm
 # install dev packages
 apt-get -y install autoconf automake curl libxslt1-dev re2c libxml2 libxml2-dev bison libbz2-dev libreadline-dev
 apt-get -y install libfreetype6 libfreetype6-dev libpng12-0 libpng12-dev libjpeg-dev libjpeg8-dev libjpeg8 libgd-dev libgd3 libxpm4 libc-client2007e libc-client2007e-dev
-apt-get install libfcgi-dev libfcgi0ldbl libjpeg62-dbg libmcrypt-dev libssl-dev libc-client2007e libc-client2007e-dev
+apt-get -y install libfcgi-dev libfcgi0ldbl libjpeg62-dbg libmcrypt-dev libssl-dev libc-client2007e libc-client2007e-dev
 apt-get -y install libssl-dev openssl
 apt-get -y install gettext libgettextpo-dev libgettextpo0
 apt-get -y install libicu48 libicu-dev

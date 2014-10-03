@@ -136,7 +136,7 @@ update-rc.d -f apache2 remove
 update-rc.d -f mysql remove
 update-rc.d -f php5-fpm remove
 # remove php-fpm upstart service
-rm -f /etc/init/php5-fpm.conf
+rm /etc/init/php5-fpm.conf
 
 # install augeas
 apt-get -y install augeas-tools

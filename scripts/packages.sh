@@ -140,3 +140,8 @@ rm /etc/init/php5-fpm.conf
 
 # install augeas
 apt-get -y install augeas-tools
+
+# add symlink to dashbrew cli app
+cp /tmp/config-files/usr/bin/dashbrew /usr/bin/dashbrew
+chown root:root /usr/bin/dashbrew
+chmod +x /usr/bin/dashbrew

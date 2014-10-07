@@ -7,10 +7,10 @@ export PHPBREW_ROOT=/opt/phpbrew
 source $PHPBREW_ROOT/bashrc
 
 # install php 5.6
-/usr/bin/phpbrew install 5.6.0 +dev
+/usr/bin/phpbrew install 5.6.1 +dev
 
 # install php tools & extensions
-phpbrew switch 5.6.0
+phpbrew switch 5.6.1
 phpbrew install-phpunit
 phpbrew install-composer
 /usr/bin/phpbrew ext install +dev

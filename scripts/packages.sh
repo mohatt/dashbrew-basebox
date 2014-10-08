@@ -36,7 +36,7 @@ php5dismod opcache
 # copy default fpm pool config
 cp /tmp/config-files/etc/php5/fpm/pool.d/www.conf /etc/php5/fpm/pool.d/www.conf
 # make the directory that will contain configs for installed php-fpms
-mkdir /etc/apache2/php
+mkdir -m 0755 /etc/apache2/php
 # copy php-fpms config file for system php
 cp /tmp/config-files/etc/apache2/php/php-system-fpm.conf /etc/apache2/php/php-system-fpm.conf
 # copy php5-fpm init.d file
@@ -65,7 +65,7 @@ mv phpbrew /usr/bin/phpbrew
 chmod +x /usr/bin/phpbrew
 
 # create phpbrew directory and allow it to by managed by a non-root user
-mkdir /opt/phpbrew
+mkdir -m 0755 /opt/phpbrew
 chown $PACKER_SSH_USERNAME:$PACKER_SSH_USERNAME /opt/phpbrew
 
 # default phpbrew configurations
@@ -140,6 +140,9 @@ rm /etc/init/php5-fpm.conf
 
 # install augeas
 apt-get -y install augeas-tools
+
+# create the directory that will contain dashbrew etc files
+mkdir -m 0755 /etc/dashbrew
 
 # add symlink to dashbrew cli app
 cp /tmp/config-files/usr/bin/dashbrew /usr/bin/dashbrew

@@ -113,13 +113,13 @@ chmod +x /etc/init.d/mailcatcher
 # install phpmyadmin
 curl -L -O http://garr.dl.sourceforge.net/project/phpmyadmin/phpMyAdmin/4.2.9.1/phpMyAdmin-4.2.9.1-english.tar.gz
 tar -xzvf phpMyAdmin-4.2.9.1-english.tar.gz
-mv phpMyAdmin-4.2.9.1-english /opt/pma
+mv phpMyAdmin-4.2.9.1-english /usr/share/phpmyadmin
 rm phpMyAdmin-4.2.9.1-english.tar.gz
-chown -R $PACKER_SSH_USERNAME:www-data /opt/pma
+chown -R $PACKER_SSH_USERNAME:www-data /usr/share/phpmyadmin
 
-# copy PMA config file
-cp /tmp/config-files/opt/pma/config.inc.php /opt/pma/config.inc.php
-chown $PACKER_SSH_USERNAME:www-data /opt/pma/config.inc.php
+# copy phpmyadmin config file
+cp /tmp/config-files/usr/share/phpmyadmin/config.inc.php /usr/share/phpmyadmin/config.inc.php
+chown $PACKER_SSH_USERNAME:www-data /usr/share/phpmyadmin/config.inc.php
 
 # install nodejs
 apt-get -y install nodejs

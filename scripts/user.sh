@@ -9,6 +9,7 @@ source $PHPBREW_ROOT/bashrc
 # install php tools
 phpbrew install-phpunit
 phpbrew install-composer
+phpbrew install-pyrus
 
 # oh my zsh
 git clone -b phpbrew https://github.com/mdkholy/oh-my-zsh.git .oh-my-zsh

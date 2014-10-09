@@ -31,8 +31,11 @@ apt-get -y build-dep php5
 
 # install system php (we just want the cli sapi and the dev package)
 apt-get -y install php5-dev php5-cli php5-fpm php-pear php5-curl php5-xdebug php5-mysqlnd php5-sqlite
-# no need for these modules
+# no need for opcache extension
 php5dismod opcache
+# copy default php inis (customized for development enviroment)
+cp /tmp/config-files/etc/php5/fpm/php.ini /etc/php5/fpm/php.ini
+cp /tmp/config-files/etc/php5/cli/php.ini /etc/php5/cli/php.ini
 # copy default fpm pool config
 cp /tmp/config-files/etc/php5/fpm/pool.d/www.conf /etc/php5/fpm/pool.d/www.conf
 # make the directory that will contain configs for installed php-fpms

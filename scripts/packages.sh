@@ -15,15 +15,13 @@ a2enmod rewrite proxy proxy_fcgi proxy_http actions ssl mime
 make-ssl-cert generate-default-snakeoil --force-overwrite
 # copy apache2 config file
 cp /tmp/config-files/etc/apache2/apache2.conf /etc/apache2/apache2.conf
-chown root:root /etc/apache2/apache2.conf
 # configure default vhosts
 rm -rf /var/www/*
 rm -rf /etc/apache2/sites-enabled/*
 rm -rf /etc/apache2/sites-available/*
 cp /tmp/config-files/etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
 cp /tmp/config-files/etc/apache2/sites-available/000-default-ssl.conf /etc/apache2/sites-available/000-default-ssl.conf
-chown root:root /etc/apache2/sites-available/000-default.conf
-chown root:root /etc/apache2/sites-available/000-default-ssl.conf
+chmod 0644 /etc/apache2/sites-available/*
 a2ensite 000-default 000-default-ssl
 
 # install php5 build deps
@@ -42,9 +40,9 @@ cp /tmp/config-files/etc/php5/fpm/pool.d/www.conf /etc/php5/fpm/pool.d/www.conf
 mkdir -m 0755 /etc/apache2/php
 # copy php-fpms config file for system php
 cp /tmp/config-files/etc/apache2/php/php-system-fpm.conf /etc/apache2/php/php-system-fpm.conf
+chmod 0644 /etc/apache2/php/php-system-fpm.conf
 # copy php5-fpm init.d file
 cp /tmp/config-files/etc/init.d/php5-fpm /etc/init.d/php5-fpm
-chmod +x /etc/init.d/php5-fpm
 
 # install dev packages
 apt-get -y install autoconf automake curl libxslt1-dev re2c libxml2 libxml2-dev bison libbz2-dev libreadline-dev
@@ -65,6 +63,7 @@ apt-get -y install zsh
 # install phpbrew
 curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew
 mv phpbrew /usr/bin/phpbrew
+chmod 0755 /usr/bin/phpbrew
 chmod +x /usr/bin/phpbrew
 
 # create phpbrew directory and allow it to by managed by a non-root user
@@ -73,16 +72,19 @@ chown $PACKER_SSH_USERNAME:$PACKER_SSH_USERNAME /opt/phpbrew
 
 # default phpbrew configurations
 cp /tmp/config-files/opt/phpbrew/config.yaml /opt/phpbrew/config.yaml
+chmod 0664 /opt/phpbrew/config.yaml
 chown $PACKER_SSH_USERNAME:$PACKER_SSH_USERNAME /opt/phpbrew/config.yaml
 
 # php-fpm control script
 cp /tmp/config-files/opt/phpbrew/php-fpm.sh /opt/phpbrew/php-fpm.sh
+chmod 0755 /opt/phpbrew/php-fpm.sh
 chown $PACKER_SSH_USERNAME:$PACKER_SSH_USERNAME /opt/phpbrew/php-fpm.sh
 chmod +x /opt/phpbrew/php-fpm.sh
 
 # configure phpbrew paths
 # source /opt/phpbrew/bashrc
 cp /tmp/config-files/etc/profile.d/phpbrew.sh /etc/profile.d/phpbrew.sh
+chmod 0644 /etc/profile.d/phpbrew.sh
 
 # force zsh to load scripts in /etc/profile and /etc/profile.d/*
 cat <<EOF > /etc/zsh/zprofile
@@ -105,6 +107,7 @@ env REALLY_GEM_UPDATE_SYSTEM=1 /usr/bin/gem update --system
 addgroup mailcatcher
 adduser --ingroup mailcatcher --disabled-password --gecos "" --no-create-home --shell "/bin/true" mailcatcher
 cp /tmp/config-files/etc/init.d/mailcatcher /etc/init.d/mailcatcher
+chmod 0755 /etc/init.d/mailcatcher
 chmod +x /etc/init.d/mailcatcher
 
 # install phpmyadmin
@@ -134,9 +137,9 @@ cp /tmp/config-files/etc/monit/monitrc /etc/monit/monitrc
 # copy default monit services
 cp /tmp/config-files/etc/monit/* /etc/monit/conf.d/
 chown root:root /etc/monit/conf.d/*
+chmod 0644 /etc/monit/conf.d/*
 # copy monit init.d file
 cp /tmp/config-files/etc/init.d/monit /etc/init.d/monit
-chmod +x /etc/init.d/monit
 
 # disable startup of apache2 & mysql since we're managing them through monit
 update-rc.d -f apache2 remove
@@ -154,4 +157,5 @@ mkdir -m 0755 /etc/dashbrew
 # add symlink to dashbrew cli app
 cp /tmp/config-files/usr/bin/dashbrew /usr/bin/dashbrew
 chown root:root /usr/bin/dashbrew
+chmod 0755 /usr/bin/dashbrew
 chmod +x /usr/bin/dashbrew

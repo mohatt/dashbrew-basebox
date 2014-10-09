@@ -14,6 +14,7 @@ phpbrew install-pyrus
 # oh my zsh
 git clone -b phpbrew https://github.com/mdkholy/oh-my-zsh.git .oh-my-zsh
 cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
+# change default shell to zsh
 echo -e "${PACKER_SSH_PASSWORD}" | chsh -s /bin/zsh
 
 # tell rubygems not to install the documentation for each package locally

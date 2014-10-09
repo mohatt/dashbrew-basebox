@@ -10,6 +10,9 @@ apt-get -y install mysql-client libmysqlclient-dev libmysqld-dev
 
 # ensure apache is installed
 apt-get -y install apache2
+# configure apache modules
+a2enmod rewrite proxy proxy_fcgi proxy_http actions ssl mime
+make-ssl-cert generate-default-snakeoil --force-overwrite
 # copy apache2 config file
 cp /tmp/config-files/etc/apache2/apache2.conf /etc/apache2/apache2.conf
 chown root:root /etc/apache2/apache2.conf
@@ -22,9 +25,6 @@ cp /tmp/config-files/etc/apache2/sites-available/000-default-ssl.conf /etc/apach
 chown root:root /etc/apache2/sites-available/000-default.conf
 chown root:root /etc/apache2/sites-available/000-default-ssl.conf
 a2ensite 000-default 000-default-ssl
-# configure apache modules
-make-ssl-cert generate-default-snakeoil --force-overwrite
-a2enmod rewrite proxy proxy_fcgi proxy_http actions ssl mime
 
 # install php5 build deps
 apt-get -y build-dep php5

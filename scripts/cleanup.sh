@@ -38,7 +38,7 @@ find /var/lib/apt -type f | xargs rm -f
 
 # delete php & php extention archives downloaded by phpbrew
 rm /opt/phpbrew/build/*.bz2
-rm /opt/phpbrew/build/php-5.6.0/ext/*.tgz
+rm /opt/phpbrew/build/php-5.6.1/ext/*.tgz
 
 # clean /tmp dir
 rm -rf /tmp/*

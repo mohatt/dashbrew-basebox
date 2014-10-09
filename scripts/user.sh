@@ -6,14 +6,9 @@ export PHPBREW_ROOT=/opt/phpbrew
 /usr/bin/phpbrew init
 source $PHPBREW_ROOT/bashrc
 
-# install php 5.6
-/usr/bin/phpbrew install 5.6.1 +dev
-
-# install php tools & extensions
-phpbrew switch 5.6.1
+# install php tools
 phpbrew install-phpunit
 phpbrew install-composer
-/usr/bin/phpbrew ext install +dev
 
 # oh my zsh
 git clone -b phpbrew https://github.com/mdkholy/oh-my-zsh.git .oh-my-zsh

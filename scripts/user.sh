@@ -8,7 +8,6 @@ source $PHPBREW_ROOT/bashrc
 
 # install php tools
 phpbrew install-phpunit
-phpbrew install-composer
 phpbrew install-pyrus
 
 # oh my zsh

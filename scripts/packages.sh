@@ -125,6 +125,17 @@ chown -R $PACKER_SSH_USERNAME:www-data /usr/share/phpmyadmin
 cp /tmp/config-files/usr/share/phpmyadmin/config.inc.php /usr/share/phpmyadmin/config.inc.php
 chown $PACKER_SSH_USERNAME:www-data /usr/share/phpmyadmin/config.inc.php
 
+# install composer
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
+# make global composer directory
+mkdir /usr/share/composer
+chown $PACKER_SSH_USERNAME:$PACKER_SSH_USERNAME /usr/share/composer
+chmod 0755 /usr/share/composer
+# copy composer env variables
+cp /tmp/config-files/etc/profile.d/composer.sh /etc/profile.d/composer.sh
+chmod 0644 /etc/profile.d/composer.sh
+
 # install nodejs
 apt-get -y install nodejs
 

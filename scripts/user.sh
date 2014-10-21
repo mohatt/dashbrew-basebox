@@ -6,9 +6,6 @@ export PHPBREW_ROOT=/opt/phpbrew
 /usr/bin/phpbrew init
 source $PHPBREW_ROOT/bashrc
 
-# install php tools
-phpbrew install-pyrus
-
 # oh my zsh
 git clone -b phpbrew https://github.com/mdkholy/oh-my-zsh.git .oh-my-zsh
 cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc

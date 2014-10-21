@@ -142,8 +142,9 @@ cp /tmp/config-files/etc/monit/monitrc /etc/monit/monitrc
 cp /tmp/config-files/etc/monit/conf.d/* /etc/monit/conf.d/
 chown root:root /etc/monit/conf.d/*
 chmod 0644 /etc/monit/conf.d/*
-# copy monit init.d file
-cp /tmp/config-files/etc/init.d/monit /etc/init.d/monit
+# no need for monit init.d file since we're starting monit http interface and monit
+# services through dashbrew provisioner
+rm /etc/init.d/monit
 
 # disable startup of apache2 & mysql since we're managing them through monit
 update-rc.d -f apache2 remove

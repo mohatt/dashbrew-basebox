@@ -14,30 +14,30 @@ start() {
         exit
     fi
 
+	if [ "$(ls -A /opt/phpbrew/php)" ]; then
+	    for dir in /opt/phpbrew/php/*/
+	    do
+	        dir=${dir%*/}
+	        dirname="$(basename ${dir})"
+	        ini_dir=$dir/var/db
+	        ini_user="$(stat -c "%U" ${dir}/var)"
+	        ini_group="$(stat -c "%G" ${dir}/var)"
+	        if [ ! -d "${ini_dir}" ]; then
+	            mkdir $ini_dir
+	            chown $ini_user $ini_dir
+	            chgrp $ini_user $ini_dir
+	        fi
 
-    for dir in /opt/phpbrew/php/*/
-    do
-        dir=${dir%*/}
-        dirname="$(basename ${dir})"
-        ini_dir=$dir/var/db
-        ini_user="$(stat -c "%U" ${dir}/var)"
-        ini_group="$(stat -c "%G" ${dir}/var)"
-        if [ ! -d "${ini_dir}" ]; then
-            mkdir $ini_dir
-            chown $ini_user $ini_dir
-            chgrp $ini_user $ini_dir
-        fi
+	        ini_file=$ini_dir/mailcatcher.ini
+	        if [ ! -f "${ini_file}" ]; then
+	            touch $ini_file
+	            chown $ini_user $ini_file
+	            chgrp $ini_user $ini_file
+	        fi
 
-        ini_file=$ini_dir/mailcatcher.ini
-        if [ ! -f "${ini_file}" ]; then
-            touch $ini_file
-            chown $ini_user $ini_file
-            chgrp $ini_user $ini_file
-        fi
-
-        printf "; Mailcatcher configurations\nsendmail_path = \"/usr/bin/catchmail --smtp-ip 127.0.0.1 --smtp-port 1025 -f ${dirname}@mailcatcher.dev\"" > $ini_file
-    done
-
+	        printf "; Mailcatcher configurations\nsendmail_path = \"/usr/bin/catchmail --smtp-ip 127.0.0.1 --smtp-port 1025 -f ${dirname}@mailcatcher.dev\"" > $ini_file
+	    done
+	fi
     start-stop-daemon \
         --start \
         --pidfile $PID_FILE \

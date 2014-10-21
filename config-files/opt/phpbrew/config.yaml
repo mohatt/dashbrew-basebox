@@ -35,6 +35,7 @@ variants:
         ftp:
         kerberos:
         iconv:
+        icu:
         intl:
         gettext:
         session:

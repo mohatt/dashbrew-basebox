@@ -54,7 +54,7 @@ apt-get -y install libfreetype6 libfreetype6-dev libpng12-0 libpng12-dev libjpeg
 apt-get -y install libfcgi-dev libfcgi0ldbl libjpeg62-dbg libmcrypt-dev libssl-dev libc-client2007e libc-client2007e-dev
 apt-get -y install libssl-dev openssl
 apt-get -y install gettext libgettextpo-dev libgettextpo0
-apt-get -y install libicu48 libicu-dev
+apt-get -y install libicu52 libicu-dev
 apt-get -y install libmhash-dev libmhash2
 apt-get -y install libmcrypt-dev libmcrypt4
 

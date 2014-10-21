@@ -7,7 +7,6 @@ export PHPBREW_ROOT=/opt/phpbrew
 source $PHPBREW_ROOT/bashrc
 
 # install php tools
-phpbrew install-phpunit
 phpbrew install-pyrus
 
 # oh my zsh

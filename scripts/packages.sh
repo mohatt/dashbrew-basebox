@@ -136,6 +136,12 @@ chmod 0755 /usr/share/composer
 cp /tmp/config-files/etc/profile.d/composer.sh /etc/profile.d/composer.sh
 chmod 0644 /etc/profile.d/composer.sh
 
+# install phpunit
+curl -L -O https://phar.phpunit.de/phpunit.phar
+mv phpunit.phar /usr/local/bin/phpunit
+chmod 0755 /usr/local/bin/phpunit
+chmod +x /usr/local/bin/phpunit
+
 # install nodejs
 apt-get -y install nodejs
 

@@ -36,6 +36,10 @@ cp /tmp/config-files/etc/php5/fpm/php.ini /etc/php5/fpm/php.ini
 cp /tmp/config-files/etc/php5/cli/php.ini /etc/php5/cli/php.ini
 # copy default fpm pool config
 cp /tmp/config-files/etc/php5/fpm/pool.d/www.conf /etc/php5/fpm/pool.d/www.conf
+# copy mailcatcher php ini config
+cp /tmp/config-files/etc/php5/mods-available/mailcatcher.ini /etc/php5/mods-available/mailcatcher.ini
+chmod 0644 /etc/php5/mods-available/mailcatcher.ini
+php5enmod mailcatcher
 # make the directory that will contain configs for installed php-fpms
 mkdir -m 0755 /etc/apache2/php
 # copy php-fpms config file for system php
@@ -135,7 +139,7 @@ apt-get -y install monit
 # copy monit config file
 cp /tmp/config-files/etc/monit/monitrc /etc/monit/monitrc
 # copy default monit services
-cp /tmp/config-files/etc/monit/* /etc/monit/conf.d/
+cp /tmp/config-files/etc/monit/conf.d/* /etc/monit/conf.d/
 chown root:root /etc/monit/conf.d/*
 chmod 0644 /etc/monit/conf.d/*
 # copy monit init.d file

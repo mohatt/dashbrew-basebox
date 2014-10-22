@@ -115,10 +115,10 @@ chmod 0755 /etc/init.d/mailcatcher
 chmod +x /etc/init.d/mailcatcher
 
 # install phpmyadmin
-curl -L -O http://garr.dl.sourceforge.net/project/phpmyadmin/phpMyAdmin/4.2.9.1/phpMyAdmin-4.2.9.1-english.tar.gz
-tar -xzvf phpMyAdmin-4.2.9.1-english.tar.gz
-mv phpMyAdmin-4.2.9.1-english /usr/share/phpmyadmin
-rm phpMyAdmin-4.2.9.1-english.tar.gz
+curl -L -O http://garr.dl.sourceforge.net/project/phpmyadmin/phpMyAdmin/4.2.10.1/phpMyAdmin-4.2.10.1-english.tar.gz
+tar -xzvf phpMyAdmin-4.2.10.1-english.tar.gz
+mv phpMyAdmin-4.2.10.1-english /usr/share/phpmyadmin
+rm phpMyAdmin-4.2.10.1-english.tar.gz
 chown -R $PACKER_SSH_USERNAME:www-data /usr/share/phpmyadmin
 
 # copy phpmyadmin config file

@@ -10,11 +10,11 @@ apt-get -y install mysql-client libmysqlclient-dev libmysqld-dev
 
 # ensure apache is installed
 apt-get -y install apache2
+# copy apache config file
+cp /tmp/config-files/etc/apache2/apache2.conf /etc/apache2/apache2.conf
 # configure apache modules
 a2enmod rewrite proxy proxy_fcgi proxy_http actions ssl mime
 make-ssl-cert generate-default-snakeoil --force-overwrite
-# copy apache2 config file
-cp /tmp/config-files/etc/apache2/apache2.conf /etc/apache2/apache2.conf
 # configure default vhosts
 rm -rf /var/www/*
 rm -rf /etc/apache2/sites-enabled/*
@@ -175,6 +175,10 @@ apt-get -y install augeas-tools
 
 # create the directory that will contain dashbrew etc files
 mkdir -m 0755 /etc/dashbrew
+# copy dashbrew box version file
+cp /tmp/config-files/etc/dashbrew/.version /etc/dashbrew/.version
+chown root:root /etc/dashbrew/.version
+chmod 0644 /etc/dashbrew/.version
 
 # add symlink to dashbrew cli app
 cp /tmp/config-files/usr/bin/dashbrew /usr/bin/dashbrew

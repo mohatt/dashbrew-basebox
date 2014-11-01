@@ -7,6 +7,8 @@ debconf-set-selections <<< 'mysql-server mysql-server/root_password_again passwo
 # install mysql
 apt-get -y install mysql-server
 apt-get -y install mysql-client libmysqlclient-dev libmysqld-dev
+# copy mysql config file
+cp /tmp/config-files/etc/mysql/my.cnf /etc/mysql/my.cnf
 
 # ensure apache is installed
 apt-get -y install apache2

@@ -1,14 +1,15 @@
 #!/bin/bash -eux
 
-# to ensure that the mysql root password prompt is not displayed
+# ensure that the mysql root password prompt is not displayed
 debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
 debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
-
 # install mysql
 apt-get -y install mysql-server
 apt-get -y install mysql-client libmysqlclient-dev libmysqld-dev
 # copy mysql config file
 cp /tmp/config-files/etc/mysql/my.cnf /etc/mysql/my.cnf
+# allow root user to connect from any host
+mysql -uroot -proot -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root'; FLUSH PRIVILEGES;"
 
 # ensure apache is installed
 apt-get -y install apache2

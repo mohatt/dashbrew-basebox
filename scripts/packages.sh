@@ -67,7 +67,7 @@ ln -s /usr/include/freetype2 /usr/include/freetype2/freetype
 apt-get -y install zsh
 
 # install phpbrew
-curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew
+curl -L -O https://github.com/phpbrew/phpbrew/raw/1.16.1/phpbrew
 mv phpbrew /usr/bin/phpbrew
 chmod 0755 /usr/bin/phpbrew
 chmod +x /usr/bin/phpbrew

@@ -170,7 +170,8 @@ rm /etc/init.d/monit
 update-rc.d -f apache2 remove
 update-rc.d -f mysql remove
 update-rc.d -f php5-fpm remove
-# remove php-fpm upstart service
+# remove upstart services
+rm /etc/init/mysql.conf
 rm /etc/init/php5-fpm.conf
 
 # install augeas

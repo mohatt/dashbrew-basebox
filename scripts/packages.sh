@@ -68,7 +68,7 @@ ln -s /usr/include/freetype2 /usr/include/freetype2/freetype
 apt-get -y install zsh
 
 # install phpbrew
-curl -L -O https://github.com/phpbrew/phpbrew/raw/1.16.1/phpbrew
+curl -L -O https://github.com/phpbrew/phpbrew/raw/1.16.7/phpbrew
 mv phpbrew /usr/bin/phpbrew
 chmod 0755 /usr/bin/phpbrew
 chmod +x /usr/bin/phpbrew
@@ -166,7 +166,7 @@ chmod 0644 /etc/monit/conf.d/*
 # services through dashbrew provisioner
 rm /etc/init.d/monit
 
-# disable startup of apache2 & mysql since we're managing them through monit
+# disable startup of apache, mysql, php5-fpm since we're managing them through monit
 update-rc.d -f apache2 remove
 update-rc.d -f mysql remove
 update-rc.d -f php5-fpm remove

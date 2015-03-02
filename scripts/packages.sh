@@ -68,7 +68,7 @@ ln -s /usr/include/freetype2 /usr/include/freetype2/freetype
 apt-get -y install zsh
 
 # install phpbrew
-curl -L -O https://github.com/phpbrew/phpbrew/raw/1.18.3/phpbrew
+curl -L -O https://github.com/phpbrew/phpbrew/raw/1.18.4/phpbrew
 mv phpbrew /usr/bin/phpbrew
 chmod 0755 /usr/bin/phpbrew
 chmod +x /usr/bin/phpbrew
@@ -118,10 +118,10 @@ chmod 0755 /etc/init.d/mailcatcher
 chmod +x /etc/init.d/mailcatcher
 
 # install phpmyadmin
-curl -L -O http://garr.dl.sourceforge.net/project/phpmyadmin/phpMyAdmin/4.3.2/phpMyAdmin-4.3.2-english.tar.gz
-tar -xzvf phpMyAdmin-4.3.2-english.tar.gz
-mv phpMyAdmin-4.3.2-english /usr/share/phpmyadmin
-rm phpMyAdmin-4.3.2-english.tar.gz
+curl -L -O http://garr.dl.sourceforge.net/project/phpmyadmin/phpMyAdmin/4.3.10/phpMyAdmin-4.3.10-english.tar.gz
+tar -xzvf phpMyAdmin-4.3.10-english.tar.gz
+mv phpMyAdmin-4.3.10-english /usr/share/phpmyadmin
+rm phpMyAdmin-4.3.10-english.tar.gz
 chown -R $PACKER_SSH_USERNAME:www-data /usr/share/phpmyadmin
 
 # copy phpmyadmin config file

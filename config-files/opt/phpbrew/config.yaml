@@ -36,6 +36,7 @@ variants:
         kerberos:
         iconv:
         icu:
+            - --with-icu-dir=/usr
         intl:
         gettext:
         session:

@@ -4,7 +4,7 @@ A virtual machine template designed for use with [Packer](https://www.packer.io/
 
 ## Building
 
-***Note:*** *You don't have to build this template in order to run [Dashbrew](https://github.com/mdkholy/dashbrew), instead you may use [the pre-built basebox](#pre-built-box)*.
+***Note:*** *You don't have to build this template in order to run [Dashbrew](https://github.com/mdkholy/dashbrew), instead you may use [the pre-built basebox](#pre-built-boxes)*.
 
 ### Software Requirements
 

@@ -157,6 +157,12 @@ mv phpcpd.phar /usr/local/bin/phpcpd
 chmod 0755 /usr/local/bin/phpcpd
 chmod +x /usr/local/bin/phpcpd
 
+# install PHP Mess Detector
+curl -L -O http://static.phpmd.org/php/latest/phpmd.phar
+mv phpmd.phar /usr/local/bin/phpmd
+chmod 0755 /usr/local/bin/phpmd
+chmod +x /usr/local/bin/phpmd
+
 # install nodejs
 apt-get -y install nodejs
 

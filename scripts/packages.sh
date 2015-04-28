@@ -151,6 +151,12 @@ mv php-cs-fixer.phar /usr/local/bin/php-cs-fixer
 chmod 0755 /usr/local/bin/php-cs-fixer
 chmod +x /usr/local/bin/php-cs-fixer
 
+# install PHP Copy/Paste Detector
+curl -L -O https://phar.phpunit.de/phpcpd.phar
+mv phpcpd.phar /usr/local/bin/phpcpd
+chmod 0755 /usr/local/bin/phpcpd
+chmod +x /usr/local/bin/phpcpd
+
 # install nodejs
 apt-get -y install nodejs
 

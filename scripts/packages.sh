@@ -145,6 +145,12 @@ mv phpunit.phar /usr/local/bin/phpunit
 chmod 0755 /usr/local/bin/phpunit
 chmod +x /usr/local/bin/phpunit
 
+# install PHP Coding Standards Fixer
+curl -L -O http://get.sensiolabs.org/php-cs-fixer.phar
+mv php-cs-fixer.phar /usr/local/bin/php-cs-fixer
+chmod 0755 /usr/local/bin/php-cs-fixer
+chmod +x /usr/local/bin/php-cs-fixer
+
 # install nodejs
 apt-get -y install nodejs
 

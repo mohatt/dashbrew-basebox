@@ -145,6 +145,24 @@ mv phpunit.phar /usr/local/bin/phpunit
 chmod 0755 /usr/local/bin/phpunit
 chmod +x /usr/local/bin/phpunit
 
+# install PHP Coding Standards Fixer
+curl -L -O http://get.sensiolabs.org/php-cs-fixer.phar
+mv php-cs-fixer.phar /usr/local/bin/php-cs-fixer
+chmod 0755 /usr/local/bin/php-cs-fixer
+chmod +x /usr/local/bin/php-cs-fixer
+
+# install PHP Copy/Paste Detector
+curl -L -O https://phar.phpunit.de/phpcpd.phar
+mv phpcpd.phar /usr/local/bin/phpcpd
+chmod 0755 /usr/local/bin/phpcpd
+chmod +x /usr/local/bin/phpcpd
+
+# install PHP Mess Detector
+curl -L -O http://static.phpmd.org/php/latest/phpmd.phar
+mv phpmd.phar /usr/local/bin/phpmd
+chmod 0755 /usr/local/bin/phpmd
+chmod +x /usr/local/bin/phpmd
+
 # install nodejs
 apt-get -y install nodejs
 
